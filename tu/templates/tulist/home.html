@@ -46,20 +46,20 @@
 
           {% for things in 清单 %}
 
-            {% if things.已完成 %}
+            {% if things.done %}
 
                 <tr>
 
                   <th scope="row">{{ forloop.counter }}</th>
 
-                  <td>{{ things.待办事项 }}</td>
+                  <td>{{ things.thing }}</td>
 
-                  <td><a class="text-success" href="{% url 'tulist:编辑' forloop.counter %}">编辑</a></td>
+                  <td>不可编辑</td>
 
                   <td><a href="#">划掉</a></td>
 
                   <td>
-                      <form action="{% url 'tulist:删除' forloop.counter %}" method="post">
+                      <form action="{% url 'tulist:删除' things.id %}" method="post">
                       {% csrf_token %}
                           <button class="btn btn-danger btn-sm">删除</button>
                       </form>
@@ -69,16 +69,16 @@
             {% else %}
                    <tr>
 
-                  <th scope="row">2</th>
+                  <th scope="row">{{ forloop.counter }}</th>
 
-                  <td>{{ things.待办事项 }}</td>
+                  <td>{{ things.thing }}</td>
 
-                  <td><a class="text-success" href="{% url 'tulist:编辑' forloop.counter %}">编辑</a></td>
+                  <td><a class="text-success" href="{% url 'tulist:编辑' things.id %}">编辑</a></td>
 
                   <td><a href="#">划掉</a></td>
 
                   <td>
-                      <form action="{% url 'tulist:删除' forloop.counter %}" method="post">
+                      <form action="{% url 'tulist:删除' things.id %}" method="post">
                       {% csrf_token %}
                           <button class="btn btn-danger btn-sm">删除</button>
                       </form>
